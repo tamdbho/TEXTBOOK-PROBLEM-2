@@ -1,0 +1,26 @@
+
+def frequency_dict (dna,k):
+    kmer_counter = {}
+    for i in range (0, len(dna) - k +1, 1):
+        kmer = dna [i : i+k]
+        if not kmer_counter.get(kmer):
+            kmer_counter[kmer] = 1
+        else:
+            kmer_counter[kmer] = kmer_counter[kmer] + 1
+    return (kmer_counter)
+
+
+def FrequencyKmer (dna,k):
+    all_kmers = frequency_dict(dna,k)
+    max_count = max(all_kmers.values())
+    kmers = []
+    
+    for kmer, Kmercount in all_kmers.items():
+        if Kmercount == max_count:
+            kmers.append(kmer)  
+    return (str(max_count) + '  ' + str(kmers))
+
+dna = input('Enter DNA string: ')
+k = int(input('Enter k-value: '))
+
+print(FrequencyKmer(dna,k))
